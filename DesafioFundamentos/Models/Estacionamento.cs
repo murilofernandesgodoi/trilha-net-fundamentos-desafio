@@ -15,7 +15,9 @@ namespace DesafioFundamentos.Models
         public void AdicionarVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            veiculos = new List<string> { Console.ReadLine() };
+            string placa = "";
+            placa = Console.ReadLine();
+            veiculos.Add(placa);
         }
 
         public void RemoverVeiculo()
@@ -23,7 +25,7 @@ namespace DesafioFundamentos.Models
             Console.WriteLine("Digite a placa do veículo para remover:");
             string placa = "";
             placa = Console.ReadLine();
-
+            
             // Verifica se o veículo existe
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
             {
@@ -32,24 +34,21 @@ namespace DesafioFundamentos.Models
                 horas = int.Parse(Console.ReadLine());
                 decimal valorTotal = 0; 
                 valorTotal = precoInicial + precoPorHora * horas;
-                if (placa != null)
-                {
-                    veiculos.Remove($"{placa.ToUpper()}");
-                    Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+               
+                veiculos.Remove($"{placa.ToUpper()}");
+                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
-            }
         }
 
         public void ListarVeiculos()
         {
-            // Verifica se há veículos no estacionamento
             if (veiculos.Any())
             {
-                Console.WriteLine($"Os veículos estacionados são:{veiculos.Count}");
+                // Verifica se há veículos no estacionamento
+                foreach (string placasCarros in veiculos)
+                {
+                    Console.WriteLine(placasCarros);
+                }
             }
             else
             {
